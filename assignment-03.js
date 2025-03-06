@@ -105,42 +105,66 @@ var products = [
   },
 ];
 
-//----------------------------------------------------------------------------
-// Question-01  Find a Product by ID ?
-//Write a program that takes a product ID and prints the product object.
+// //----------------------------------------------------------------------------
+// // Question-01  Find a Product by ID ?
+// //Write a program that takes a product ID and prints the product object.
 
-//console.log(products[1]);
-
+console.log("** products by ID ** ");
+let productId = 102;
+let foundProduct = null;
+for (let i = 0; i < products.length; i++) {
+  if (products[i].id === productId) {
+    foundProduct = products[i];
+    break;
+  }
+}
+console.log("Product Found:", foundProduct);
 
 // Question-02  List All Product Titles
 //Write a program that prints all product titles.
 
-
-// for (var i = 0; i < products.length; i++) {
-//   var product = products[i];
-//   console.log(product.title);
-// }
-
+console.log("** All Product Titles **");
+for (var i = 0; i < products.length; i++) {
+  var product = products[i];
+  console.log(product.title);
+}
 
 // Question-03  Find Available Colors of a Product
-//Given a product ID, print all available colors.
+// Given a product ID, print all available colors.
 
-for (var i = 0; i < products.length; i++) {
-  var color = products[i];
- 
+console.log("** Available Colors for Product **");
+for (let i = 0; i < products.length; i++) {
+  if (products[i].id === 101) {
+    for (let j = 0; j < products[i].variations.length; j++) {
+      console.log(products[i].variations[j].color);
+    }
+  }
 }
-console.log(products.id[0]);
 
-// Question-03  Get Total Quantity of a Product
+
+// Question-04  Get Total Quantity of a Product
 //Write a program that calculates and prints the total quantity of all variations of a given product.
 
-var totalQuantity = 0;
-for (var i = 0; i < products.variations.length; i++) {
-  console.log(products.variations[i])
-  totalQuantity = totalQuantity + products.variations[i].quantity;
+console.log("** Total Quantity of a Product **");
+let totalQuantity = 0;
+for (let i = 0; i < products.length; i++) {
+  if (products[i].id === 101) {
+    for (let j = 0; j < products[i].variations.length; j++) {
+      totalQuantity += products[i].variations[j].quantity;
+    }
+  }
 }
+console.log("Total Quantity of Product 101:", totalQuantity);
 
-// var avg = totalQuantity / product.variations.length;
+// Question-05 Filter Products with Low Stock
+//Write a program that prints products where at least one variation has a quantity of less than 2
 
-console.log(totalQuantity);
-console.log(avg);
+console.log("** Products with Low Stock **");
+for (let i = 0; i < products.length; i++) {
+  for (let j = 0; j < products[i].variations.length; j++) {
+    if (products[i].variations[j].quantity < 2) {
+      console.log(products[i].title);
+      break;
+    }
+  }
+}
